@@ -5,7 +5,7 @@
 Native mobile music app, including audio playback, shared wave files in the PCL, 
 and intuitive UI, including nested layouts and Xamarin.Forms animations.
 
-![Druminator 3000](https://github.com/mediaexplorer74/DrumPad/blob/main/druminator.jpg)
+![Druminator 3000](https://github.com/mediaexplorer74/DrumPad/blob/main/Druminator.jpg)
 
 Please use VS 2019 Preview 3 to see DrumPad in action and learn in practice 
 how to start building nice multi-platform apps via modern Xamarin Tech :)
