@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="Druminator1-7c557a"
-    Publisher="CN=media"
+    Name="E0694F51-FD28-404C-BB11-714D138D7AF2"
+    Publisher="CN=7D371986-0A13-45C4-9F28-E28967047FFF"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1c030072-74de-4930-b499-7c557acb333c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>DrumPad.UWP</DisplayName>
-    <PublisherDisplayName>mediaexplorer</PublisherDisplayName>
+    <PublisherDisplayName>7D371986-0A13-45C4-9F28-E28967047FFF</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -37,12 +37,14 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="DrumPad.UWP"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:InitialRotationPreference>
-          <uap:Rotation Preference="landscape"/>
-          <uap:Rotation Preference="portrait"/>
-          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>

@@ -1,7 +1,9 @@
-﻿using SimpleAudio;
+﻿//using SimpleAudio;
+using SimpleAudio;
 using System;
 using System.IO;
 using System.Reflection;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DrumPad
@@ -10,21 +12,24 @@ namespace DrumPad
     {
         enum DrumType
         {
-            TomTom,
-            Snare,
-            Bass,
-            HiHat,
-            count
+            TomTom, Snare, Bass, HiHat, count
         }
 
+        //ISimpleAudioPlayer[] players = new ISimpleAudioPlayer[(int)DrumType.count];
+
         ISimpleAudioPlayer[] players = new ISimpleAudioPlayer[(int)DrumType.count];
+
         Animation[] animations = new Animation[(int)DrumType.count];
 
         public MainPage()
         {
+
+            ISimpleAudioPlayer SimpleAudioPlay = DependencyService.Get<ISimpleAudioPlayer>();
+
             for (int i = 0; i < (int)DrumType.count; i++)
             {
-               players[i] = DrumPad.App.CreateAudioPlayer();
+
+                players[i] = null;//DrumPad.App.CreateAudioPlayer();
             }
 
             InitializeComponent();
@@ -32,15 +37,19 @@ namespace DrumPad
             Color colorButton = btnPlayBass.BackgroundColor;
             Color colorHighlight = Color.FromHex("#EF5A56");
 
-            animations[(int)DrumType.Bass]   = new Animation(v => btnPlayBass.BackgroundColor   = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
-            animations[(int)DrumType.HiHat]  = new Animation(v => btnPlayHiHat.BackgroundColor  = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
-            animations[(int)DrumType.Snare]  = new Animation(v => btnPlaySnare.BackgroundColor  = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
-            animations[(int)DrumType.TomTom] = new Animation(v => btnPlayTomTom.BackgroundColor = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
+            animations[(int)DrumType.Bass] = new Animation(
+                v => btnPlayBass.BackgroundColor = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
+            animations[(int)DrumType.HiHat] = new Animation(
+                v => btnPlayHiHat.BackgroundColor = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
+            animations[(int)DrumType.Snare] = new Animation(
+                v => btnPlaySnare.BackgroundColor = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
+            animations[(int)DrumType.TomTom] = new Animation(
+                v => btnPlayTomTom.BackgroundColor = GetBlendedColor(colorButton, colorHighlight, v), 0, 1);
 
-            btnPlayBass.Clicked   += (s, e) => OnDrumButton(DrumType.Bass);
-            btnPlaySnare.Clicked  += (s, e) => OnDrumButton(DrumType.Snare);
+            btnPlayBass.Clicked += (s, e) => OnDrumButton(DrumType.Bass);
+            btnPlaySnare.Clicked += (s, e) => OnDrumButton(DrumType.Snare);
             btnPlayTomTom.Clicked += (s, e) => OnDrumButton(DrumType.TomTom);
-            btnPlayHiHat.Clicked  += (s, e) => OnDrumButton(DrumType.HiHat);
+            btnPlayHiHat.Clicked += (s, e) => OnDrumButton(DrumType.HiHat);
         }
 
         void PickerKitsSelectedIndexChanged(object sender, EventArgs e)
@@ -61,12 +70,12 @@ namespace DrumPad
             if (index < 1 || index > 2)
                 return;
 
-           players[(int)DrumType.Bass].Load(GetStreamFromFile($"Audio.bd{index}.wav"));
-           players[(int)DrumType.Snare].Load(GetStreamFromFile($"Audio.sd{index}.wav"));
-           players[(int)DrumType.TomTom].Load(GetStreamFromFile($"Audio.tt{index}.wav"));
-           players[(int)DrumType.HiHat].Load(GetStreamFromFile($"Audio.hh{index}.wav"));
+            players[(int)DrumType.Bass].Load(GetStreamFromFile($"Audio.bd{index}.wav"));
+            players[(int)DrumType.Snare].Load(GetStreamFromFile($"Audio.sd{index}.wav"));
+            players[(int)DrumType.TomTom].Load(GetStreamFromFile($"Audio.tt{index}.wav"));
+            players[(int)DrumType.HiHat].Load(GetStreamFromFile($"Audio.hh{index}.wav"));
         }
-      
+
         Stream GetStreamFromFile(string filename)
         {
             var assembly = typeof(App).GetTypeInfo().Assembly;
@@ -83,3 +92,4 @@ namespace DrumPad
         }
     }
 }
+

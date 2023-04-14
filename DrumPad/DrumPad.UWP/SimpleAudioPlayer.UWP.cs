@@ -2,10 +2,12 @@
 using System.IO;
 using Windows.UI.Xaml.Controls;
 using System;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(DrumPad.UWP.SimpleAudioPlayer))]
 namespace DrumPad.UWP
 {
-    class SimpleAudioPlayer : ISimpleAudioPlayer
+    public class SimpleAudioPlayer : ISimpleAudioPlayer
     {
         MediaElement element;
 
